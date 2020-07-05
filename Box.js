@@ -38,6 +38,8 @@ class Box{
         }
         if(this.visiblity===0){
           World.remove(world, this.body);
+          points++;
+          this.visiblity--;
         }
       }
       console.log(this.visiblity);

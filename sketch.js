@@ -9,12 +9,13 @@ var box22,box23,box24;
 var box25;
 var ground1,ground2,weight;
 var x,y,width,height;
-var gameState,points,a,highscore;
+var gameState,points,a,score,i;
 
 function setup() {
   createCanvas(800,400);
   engine = Engine.create();
   world = engine.world;
+  i = "black";
 
   gameState = "onSling";
 
@@ -55,8 +56,10 @@ function setup() {
 }
 
 function draw() {
-  background(255,255,255);
+  getBackgroundColor();
+  background(i);
   Engine.update(engine);  
+  text("SCORE: "+points,700,40);
   ground1.display();
   ground2.display();
   box1.display();
@@ -109,4 +112,20 @@ function mouseDragged(){
 function mouseReleased(){
   sling.fly();
   gameState = "launched";
+}
+async function getBackgroundColor(){
+  var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var responseJSON = await response.json();
+
+  var datetime = responseJSON.datetime;
+  var hour = datetime.slice(11,13);
+  
+  if(hour>=0600 && hour<=1900){
+      i = "black";
+      console.log("thekqj.wbfwekfkbef.bkefbkefwb.jebkew.bkjefwkbewbkjf.bef.ebwkfbkfkbjew.")
+  }
+  else{
+      i = "white";
+      console.log("thekqj.wbfwekfkbef.bkefbkefwb.jebkew.bkjefwkbewbkjf.bef.ebwkfbkfkbjew.")
+  }
 }
